@@ -1,0 +1,598 @@
+/*
+  JEEK LIGHTS - Premium Brand Stylesheet
+  Theme: Dark Elegant & Gold Accent
+  Colors: 
+    - Primary Gold: #D4AF37 (or #C9A227)
+    - Dark Brown/Accent: #2C1F14 / #1F160F
+    - Cream/Background: #F5EDE4 / #FAF6F0
+    - Dark Text: #1A120B
+*/
+
+/* --- Typography & Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-gold: #C7AE6A;
+  --primary-gold-dark: #b99a45;
+  --primary-gold-light: #F0E7B5;
+  --accent-brown: #262626;
+  --accent-brown-deep: #0d0d0d;
+  --cream-bg: #E9DF9D;
+  --cream-card: #F0E7B5;
+  --dark-text: #000000;
+}
+
+/* --- Base Customizations --- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  /* Offset for sticky navbar */
+
+  /* Old background */
+  /* background-color: var(--cream-bg); */
+
+  /* Fallback color if background image is unavailable */
+  background-color: #E9DF9D;
+
+  /* New responsive background */
+  background-image: url('./images/background.jpg');
+  /* Responsive background texture */
+  background-position: center;
+  /* Center-aligned on all viewports */
+  background-repeat: no-repeat;
+  /* Prevent background pattern duplication */
+  background-size: cover;
+  /* Cover viewport without stretch/distortion */
+  background-attachment: scroll;
+  /* Scroll normally on mobile to prevent performance issues */
+
+  color: var(--dark-text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+@media (min-width: 1024px) {
+  html {
+    background-attachment: fixed;
+    /* Fixed attachment on larger displays only */
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--accent-brown-deep);
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--accent-brown-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gold-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-gold);
+}
+
+/* --- Parallax & Smooth Transitions --- */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Fallback for devices that don't support fixed background attachment */
+@media (max-width: 1024px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* --- Premium Reveal-on-Scroll Animations --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+/* --- Interactive Hover Effects --- */
+.gold-card-hover {
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-card-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gold-card-hover:hover {
+  transform: translateY(-8px);
+}
+
+.gold-card-hover:hover::after {
+  opacity: 1;
+}
+
+/* Image zoom inside cards */
+.image-zoom-container {
+  overflow: hidden;
+}
+
+.image-zoom-target {
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gold-card-hover:hover .image-zoom-target {
+  transform: scale(1.08);
+}
+
+/* --- Glassmorphism --- */
+.glass-nav {
+  background: #000000 !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(199, 174, 106, 0.15) !important;
+}
+
+.glass-modal {
+  background: rgba(31, 22, 15, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* --- Premium Interactive Buttons --- */
+.btn-gold {
+  position: relative;
+  background-color: var(--primary-gold);
+  color: var(--accent-brown-deep);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid var(--primary-gold);
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--accent-brown-deep);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-gold:hover {
+  color: var(--primary-gold);
+  border-color: var(--primary-gold);
+}
+
+.btn-gold:hover::before {
+  width: 100%;
+}
+
+.btn-outline-gold {
+  position: relative;
+  background-color: var(--primary-gold);
+  color: var(--accent-brown-deep) !important;
+  font-weight: 600;
+  border: 1px solid var(--primary-gold);
+  transition: all 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-outline-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--accent-brown-deep);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.btn-outline-gold:hover {
+  color: var(--primary-gold) !important;
+}
+
+.btn-outline-gold:hover::before {
+  width: 100%;
+}
+
+/* --- Submenu/Dropdown Animation --- */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-parent:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* --- Active Underline Indicators --- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* --- Hamburger Menu Icon Morphing --- */
+.menu-btn-burger {
+  width: 24px;
+  height: 2px;
+  background: var(--primary-gold);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.menu-btn-burger::before,
+.menu-btn-burger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--primary-gold);
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-btn-burger::before {
+  transform: translateY(-8px);
+}
+
+.menu-btn-burger::after {
+  transform: translateY(8px);
+}
+
+/* Open State */
+.open .menu-btn-burger {
+  transform: translateX(-50px);
+  background: transparent;
+}
+
+.open .menu-btn-burger::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+
+.open .menu-btn-burger::after {
+  transform: rotate(-45deg) translate(35px, 35px);
+}
+
+/* --- Ambient Light Accent Elements --- */
+.ambient-glow {
+  filter: blur(120px);
+  opacity: 0.15;
+  background: radial-gradient(circle, var(--primary-gold) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- EveryPage Background & Deep Brown Typography Overrides --- */
+#poles-castiron,
+#luminaires,
+#gallery,
+#contact {
+  background-color: transparent !important;
+  color: var(--accent-brown-deep) !important;
+}
+
+#poles-castiron .bg-gradient-to-b,
+#luminaires .bg-gradient-to-b {
+  background: linear-gradient(to bottom, rgba(233, 223, 157, 0.2) 0%, rgba(199, 174, 106, 0.4) 70%, rgba(185, 154, 69, 0.1) 100%) !important;
+}
+
+#contact .bg-gradient-to-t {
+  background: linear-gradient(to top, rgba(233, 223, 157, 0.2) 0%, rgba(199, 174, 106, 0.4) 70%, rgba(185, 154, 69, 0.1) 100%) !important;
+}
+
+/* Header link highlight synchronization */
+.glass-nav {
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Force navbar menu names, logo title text, and mobile drawer links to be gold (#C7AE6A) */
+.glass-nav .nav-link,
+.glass-nav span.font-serif,
+.glass-nav button.nav-link,
+#mobile-menu .mobile-nav-link {
+  color: var(--primary-gold) !important;
+}
+
+/* Active and Hover states for menu items */
+.glass-nav .nav-link:hover,
+.glass-nav button.nav-link:hover,
+#mobile-menu .mobile-nav-link:hover,
+.glass-nav .nav-link.active {
+  color: var(--primary-gold-light) !important;
+}
+
+/* Headings color in modified sections */
+#poles-castiron h2,
+#luminaires h2,
+#gallery h2,
+#contact h2,
+#poles-castiron h3,
+#luminaires h3,
+#gallery h3,
+#contact h3,
+#poles-castiron h4,
+#luminaires h4,
+#gallery h4,
+#contact h4 {
+  color: var(--accent-brown-deep) !important;
+}
+
+/* Body texts & subtitles color in modified sections */
+#poles-castiron p,
+#luminaires p,
+#gallery p,
+#contact p,
+#poles-castiron span,
+#luminaires span,
+#gallery span,
+#contact span {
+  color: var(--accent-brown-deep) !important;
+  opacity: 0.9 !important;
+}
+
+/* Grid product cards overrides to clean white-base style */
+#poles-castiron .bg-accent-light\/50,
+#luminaires .bg-accent-light\/50 {
+  background-color: #ffffff !important;
+  border-color: rgba(199, 174, 106, 0.2) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+#poles-castiron .bg-accent-light\/30,
+#luminaires .bg-accent-light\/30 {
+  background-color: #ffffff !important;
+  border-top-color: rgba(199, 174, 106, 0.1) !important;
+}
+
+#poles-castiron .text-white,
+#luminaires .text-white {
+  color: var(--accent-brown-deep) !important;
+}
+
+#poles-castiron .text-gray-400,
+#luminaires .text-gray-400,
+#poles-castiron .text-gray-300,
+#luminaires .text-gray-300 {
+  color: #4b5563 !important;
+  /* Tailwind gray-600 */
+}
+
+/* Forms override in Contact Us */
+#contact input,
+#contact select,
+#contact textarea {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(38, 38, 38, 0.2) !important;
+  color: var(--accent-brown-deep) !important;
+}
+
+#contact input::placeholder,
+#contact textarea::placeholder {
+  color: rgba(38, 38, 38, 0.6) !important;
+}
+
+#contact label {
+  color: var(--accent-brown-deep) !important;
+  opacity: 0.85 !important;
+}
+
+#contact .text-white {
+  color: var(--accent-brown-deep) !important;
+}
+
+#contact .fa-solid {
+  color: var(--accent-brown-deep) !important;
+}
+
+#contact .bg-accent-light {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(38, 38, 38, 0.2) !important;
+}
+
+/* Projects Gallery filters and layouts */
+#gallery .gallery-filter-btn {
+  border-color: rgba(38, 38, 38, 0.2) !important;
+  color: var(--accent-brown-deep) !important;
+}
+
+#gallery .gallery-filter-btn.bg-accent-light {
+  background-color: var(--accent-brown-deep) !important;
+  color: var(--primary-gold) !important;
+}
+
+#gallery .gallery-filter-btn:hover {
+  border-color: var(--accent-brown-deep) !important;
+}
+
+#gallery .h-0\.5 {
+  background-color: rgba(38, 38, 38, 0.15) !important;
+}
+
+#poles-castiron .h-0\.5,
+#luminaires .h-0\.5 {
+  background-color: rgba(38, 38, 38, 0.15) !important;
+}
+
+#poles-castiron .btn-gold,
+#luminaires .btn-gold {
+  background-color: var(--accent-brown-deep) !important;
+  color: var(--primary-gold) !important;
+  border-color: var(--primary-gold) !important;
+}
+
+#poles-castiron .btn-gold::before,
+#luminaires .btn-gold::before {
+  background-color: var(--primary-gold) !important;
+}
+
+#poles-castiron .btn-gold:hover,
+#luminaires .btn-gold:hover {
+  color: var(--accent-brown-deep) !important;
+}
+
+#contact .btn-gold {
+  background-color: var(--accent-brown-deep) !important;
+  color: var(--primary-gold) !important;
+  border-color: var(--primary-gold) !important;
+}
+
+#contact .btn-gold::before {
+  background-color: var(--primary-gold) !important;
+}
+
+#contact .btn-gold:hover {
+  color: var(--accent-brown-deep) !important;
+}
+
+/* --- Global Typography Color Rules (Black vs. Gold on Black Backgrounds) --- */
+
+/* 1. Default to black (#000000) for all text on light/gold background sections */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p:not(header *, #mobile-menu *, .dropdown-menu *, footer *, #product-detail-modal *, #gallery-lightbox *, .btn-gold, .btn-outline-gold),
+span:not(header *, #mobile-menu *, .dropdown-menu *, footer *, #product-detail-modal *, #gallery-lightbox *, .btn-gold, .btn-outline-gold),
+a:not(header *, #mobile-menu *, .dropdown-menu *, footer *, #product-detail-modal *, #gallery-lightbox *, .btn-gold, .btn-outline-gold),
+li:not(header *, #mobile-menu *, .dropdown-menu *, footer *, #product-detail-modal *, #gallery-lightbox *),
+i:not(header *, #mobile-menu *, .dropdown-menu *, footer *, #product-detail-modal *, #gallery-lightbox *),
+label,
+td,
+th,
+input,
+textarea,
+select {
+  color: #000000 !important;
+}
+
+/* 2. Default to Primary Gold (#C7AE6A) for all text on black background sections */
+#products-title-section,
+#products-title-section span,
+#products-title-section h2,
+#products-title-section p,
+#products-title-section a,
+footer,
+footer *,
+footer a,
+#product-detail-modal .glass-modal,
+#product-detail-modal .glass-modal *,
+#gallery-lightbox,
+#gallery-lightbox * {
+  color: var(--primary-gold) !important;
+}
+
+/* 3. Re-verify Gold button text color behavior inside black background sections */
+#product-detail-modal .btn-gold,
+footer .btn-gold {
+  color: var(--accent-brown-deep) !important;
+  background-color: var(--primary-gold) !important;
+  border-color: var(--primary-gold) !important;
+}
+
+#product-detail-modal .btn-gold:hover,
+footer .btn-gold:hover {
+  color: var(--primary-gold) !important;
+  background-color: var(--accent-brown-deep) !important;
+  border-color: var(--primary-gold) !important;
+}
+
+#product-detail-modal .btn-gold::before,
+footer .btn-gold::before {
+  background-color: var(--accent-brown-deep) !important;
+}
