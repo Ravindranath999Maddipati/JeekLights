@@ -242,16 +242,16 @@ window.openProductModal = function(title, imageKey, category, descMain, descSub,
   // Set Product Image path (handles direct paths and placeholder formats smoothly)
   const productImg = document.getElementById('modal-product-image');
   if (productImg) {
+    productImg.alt = `${title} view specs`;
+    // Attach error fallback directly in case physical files don't exist yet (set before src to avoid race conditions)
+    productImg.onerror = function() {
+      this.src = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect fill="%231F160F" width="300" height="400"/><text fill="%23D4AF37" font-family="Playfair Display, serif" font-size="20" font-weight="bold" x="50%" y="45%" text-anchor="middle">JEEK LIGHTS</text><text fill="%23FFFFFF" font-family="sans-serif" font-size="12" x="50%" y="55%" text-anchor="middle">Brochure Photo Grid</text></svg>';
+    };
     if (imageKey.startsWith('./') || imageKey.startsWith('/') || imageKey.includes('.')) {
       productImg.src = imageKey;
     } else {
       productImg.src = `./images/products/${imageKey}.jpg`;
     }
-    productImg.alt = `${title} view specs`;
-    // Attach error fallback directly in case physical files don't exist yet
-    productImg.onerror = function() {
-      this.src = 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect fill="%231F160F" width="300" height="400"/><text fill="%23D4AF37" font-family="Playfair Display, serif" font-size="20" font-weight="bold" x="50%" y="45%" text-anchor="middle">JEEK LIGHTS</text><text fill="%23FFFFFF" font-family="sans-serif" font-size="12" x="50%" y="55%" text-anchor="middle">Brochure Photo Grid</text></svg>';
-    };
   }
 
   // Show Modal
