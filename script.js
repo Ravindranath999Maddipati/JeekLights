@@ -239,10 +239,14 @@ window.openProductModal = function(title, imageKey, category, descMain, descSub,
   document.getElementById('modal-spec-finish').textContent = finish;
   document.getElementById('modal-spec-electrical').textContent = electrical;
 
-  // Set Product Image path (handles placeholder formats smoothly)
+  // Set Product Image path (handles direct paths and placeholder formats smoothly)
   const productImg = document.getElementById('modal-product-image');
   if (productImg) {
-    productImg.src = `./images/products/${imageKey}.jpg`;
+    if (imageKey.startsWith('./') || imageKey.startsWith('/') || imageKey.includes('.')) {
+      productImg.src = imageKey;
+    } else {
+      productImg.src = `./images/products/${imageKey}.jpg`;
+    }
     productImg.alt = `${title} view specs`;
     // Attach error fallback directly in case physical files don't exist yet
     productImg.onerror = function() {
